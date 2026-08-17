@@ -32,6 +32,10 @@ jobs:
         run: |
           echo "CI Pipeline completed successfully"
           echo "Build and test logs generated"
+      - name: Temporary failure test
+        run: |
+          echo "Testing failure notification"
+          exit 1      
 
       - name: Slack success notification
         if: success()
@@ -52,3 +56,4 @@ jobs:
             -H 'Content-type: application/json' \
             --data '{"text":"❌ CI Pipeline failed for CTG2/devops-webapp"}' \
             "$SLACK_WEBHOOK_URL"
+
